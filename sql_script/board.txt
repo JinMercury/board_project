@@ -1,0 +1,33 @@
+--DROP TABLE board_tbl CASCADE CONSTRAINTS;
+
+CREATE TABLE board_tbl(
+ boardIdx number primary key not null,
+ boardWriter varchar2(20 BYTE) not null,
+ boardSubject varchar2(255 byte) not null,
+ boardContent clob,
+ boardDate timestamp default(CURRENT_TIMESTAMP),
+ viewCount number default(0)
+);
+
+create sequence seq_member_tbl nocache;
+
+--DROP TABLE comment_tbl CASCADE CONSTRAINTS;
+
+CREATE TABLE comment_tbl(
+ commentIdx number primary key not null,
+ boardIdx number not null references board_tbl(boardIdx),
+ commentWriter varchar2(20 BYTE) not null,
+ commentContent clob,
+ commentDate timestamp default(CURRENT_TIMESTAMP)
+);
+
+--DROP TABLE member_tbl CASCADE CONSTRAINTS;
+
+CREATE TABLE member_tbl(
+ memberId varchar2(20 BYTE) primary key not null,
+ memberPw varchar2(20 BYTE) not null,
+ nickname varchar2(20 BYTE) not null
+);
+select * from member_tbl;
+
+insert into member_tbl values('user1', 'user1', '유저1');
