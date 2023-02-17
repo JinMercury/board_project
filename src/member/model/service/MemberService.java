@@ -27,6 +27,15 @@ public class MemberService {
 		
 		return result;
 	}
+
+	public int infoChange(MemberVo vo) {
+		int result = -1;
+		Connection conn = getConnection();
+		result = new MemberDao().infoChange(conn, vo);
+		close(conn);
+		
+		return result;
+	}
 	
 	
 

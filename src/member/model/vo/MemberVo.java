@@ -5,12 +5,13 @@ public class MemberVo {
 	private String memberId;
 	private String memberPw;
 	private String nickname;
-	
+
 	@Override
 	public String toString() {
-		return "MemberVo [memberId=" + memberId + ", memberPw=" + memberPw + ", nickname=" + nickname + "]";
+		return "MemberVo [memberId=" + memberId + ", memberPw=" + memberPw + ", nickname="
+				+ nickname + "]";
 	}
-
+	
 	public String getMemberId() {
 		return memberId;
 	}

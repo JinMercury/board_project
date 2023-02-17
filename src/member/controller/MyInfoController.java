@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.model.service.MemberService;
+import member.model.vo.MemberVo;
+
 /**
  * Servlet implementation class MyInfoController
  */
@@ -32,7 +35,19 @@ public class MyInfoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		MemberVo vo = new MemberVo();
+		vo.setMemberId(request.getParameter("memberId"));
+		vo.setMemberPw(request.getParameter("memberPw"));
+		vo.setNickname(request.getParameter("nickname"));
+		
+		int result = new MemberService().infoChange(vo);
+		
+		if(result < 1) {
+			request.setAttribute("infoErr", "정보수정이 실패하였습니다. 다시 시도해주세요");
+			request.getRequestDispatcher("/WEB-INF/view/member/myinfo.jsp").forward(request, response);
+		} else {
+			response.sendRedirect(request.getContextPath()+"/logout");
+		}
 	}
 
 }

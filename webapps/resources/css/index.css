@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.tabDiv {
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 80%;
+	border: 4px solid #545454;
+}
+
+table {
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 80%;
+	border-spacing: 0 10px;
+}

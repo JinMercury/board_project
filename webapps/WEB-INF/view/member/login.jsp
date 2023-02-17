@@ -34,7 +34,7 @@
 		$(".enrollbtn").on("click", enroll);
 		
 		function enroll() {
-			location.href="<%= request.getContextPath() %>/logout";
+			location.href="<%= request.getContextPath() %>/enroll";
 		}
 	</script>
 </body>

@@ -61,4 +61,28 @@ public class MemberDao {
 		return result;
 	}
 
+	public int infoChange(Connection conn, MemberVo vo) {
+		int result = -1;
+		
+		String query = "update member_tbl set memberPw=?, nickname=? where memberId=?";
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, vo.getMemberPw());
+			pstmt.setString(2, vo.getNickname());
+			pstmt.setString(3, vo.getMemberId());
+			
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
