@@ -38,4 +38,27 @@ public class MemberDao {
 		return result;
 	}
 
+	public int enroll(Connection conn, MemberVo vo) {
+		int result = -1;
+		String query = "insert into member_tbl values(?, ?, ?)";
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, vo.getMemberId());
+			pstmt.setString(2, vo.getMemberPw());
+			pstmt.setString(3, vo.getNickname());
+			
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

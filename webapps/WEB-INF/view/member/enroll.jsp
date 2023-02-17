@@ -26,7 +26,11 @@
 					<input type="text" name="nickname" placeholder="닉네임">
 					<br>
 					<button class="enrollbtn" type="submit">회원가입</button>
-					<div id="errDiv"></div>
+					<div id="errDiv">
+						<c:if test="${not empty enrErr}">
+							<p style='color: red;'>${enrErr}</p>
+						</c:if>
+					</div>
 				</form>
 			</div>		
 		</div>

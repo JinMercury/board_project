@@ -21,6 +21,9 @@ public class MemberService {
 
 	public int enroll(MemberVo vo) {
 		int result = -1;
+		Connection conn = getConnection();
+		result = new MemberDao().enroll(conn, vo);
+		close(conn);
 		
 		return result;
 	}
