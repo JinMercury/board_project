@@ -11,7 +11,7 @@
 	</div>
 </header>
 
-<style>
+<!-- style>
 	@font-face {
 	    font-family: 'NanumSquareNeo-Variable';
 	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
@@ -73,4 +73,4 @@
 	a:hover, a:active {
 		text-decoration: none;
 	}
-</style>
+</style-->
