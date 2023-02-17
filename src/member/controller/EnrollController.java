@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.model.vo.MemberVo;
+
 /**
  * Servlet implementation class EnrollController
  */
@@ -32,7 +34,10 @@ public class EnrollController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		MemberVo vo = new MemberVo();
+		vo.setMemberId(request.getParameter("memberId"));
+		vo.setMemberId(request.getParameter("memberPw"));
+		vo.setMemberId(request.getParameter("nickname"));
 	}
 
 }

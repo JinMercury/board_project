@@ -18,6 +18,12 @@ public class MemberService {
 		
 		return result;
 	}
+
+	public int enroll(MemberVo vo) {
+		int result = -1;
+		
+		return result;
+	}
 	
 	
 

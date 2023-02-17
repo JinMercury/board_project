@@ -38,10 +38,11 @@ public class LoginController extends HttpServlet {
 		
 		MemberVo result = new MemberService().login(vo);
 		if(result != null) {
-			System.out.println("로그인 성공");
+			request.getSession().setAttribute("lgnss", result);
 			response.sendRedirect(request.getContextPath() + "/");
 		} else {
-			System.out.println("로그인 실패");
+			request.setAttribute("error", "아이디 또는 패스워드가 잘못되었습니다.");
+			request.getRequestDispatcher("/WEB-INF/view/member/login.jsp").forward(request, response);
 		}
 	}
 

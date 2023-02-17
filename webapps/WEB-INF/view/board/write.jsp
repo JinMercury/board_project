@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/css/header.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/css/write.css">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,78 +28,6 @@
 			</div>
 			<button class="writebtn" type="submit">작성</button>
 		</form>
-		
-		
 	</section>
-	
-	<style>
-		.writeDiv {
-			margin: 0 auto;
-			margin-top: 20px;
-			width: 80%;
-			height: 500px;
-			border: 4px solid #545454;
-		}
-		
-		.btnDiv {
-			margin: 0 auto;
-			width: 80%;
-		}
-		
-		.text {
-			font-size: 24px;
-			padding-right: 20px; 
-		}
-		
-		.content {
-			position: relative;
-			bottom: 260px;
-		}
-		
-		.select {
-			margin-left: 30px;
-			margin-top: 20px;
-			margin-bottom: 10px;
-			font-size: 16px;
-			font-family: 'NanumSquareNeo-Variable';
-			border: 2px solid #545454;
-		}
-		
-		input {
-			margin: 10px;
-			border: 4px solid #545454;
-			width: 80%;
-			height: 50px;
-			font-size: 24px;
-		}
-		
-		textarea {
-			margin: 10px;
-			border: 4px solid #545454;
-			width: 80%;
-			height: 15em;
-			font-size: 18px;
-			font-family: 'NanumSquareNeo-Variable';
-		}
-		
-		.textDiv{
-			margin-left: 30px;
-		}
-		
-		.writebtn {
-			all: unset;
-			background-color: #545454; 
-			font-size: 16px;
-			color: white;
-			width: 100px;
-			height: 30px;
-			border-radius: 12px;
-			text-align: center;
-			padding: 10px;
-			float: right;
-			margin-right: 110px;
-			margin-top: 20px;
-		}
-	</style>
 </body>
 </html>

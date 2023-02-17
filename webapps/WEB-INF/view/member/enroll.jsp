@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/css/header.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/css/enroll.css">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -21,54 +23,37 @@
 					<br>
 					<input type="password" name="pwCheck" placeholder="비밀번호 확인">
 					<br>
-					<input type="text" name="memberPw" placeholder="닉네임">
+					<input type="text" name="nickname" placeholder="닉네임">
 					<br>
 					<button class="enrollbtn" type="submit">회원가입</button>
+					<div id="errDiv"></div>
 				</form>
 			</div>		
 		</div>
 	</section>
 	
-	<style>
-		.enrollDiv {
-			margin: 0 auto;
-			margin-top: 20px;
-			width: 80%;
-			border: 4px solid #545454;
-		}
-		
-		#enrollform {
-			width: 100%;
-			display: inline-block;
-			text-align: center;
-			height: 600px;
-		}
-		
-		.enrollbtn {
-			all: unset;
-			background-color: #545454; 
-			font-size: 24px;
-			color: white;
-			padding: 10px;
-			width: 200px;
-			border-radius: 12px;
-			margin-top : 20px;
-			margin-bottom : 20px;
-		}
-		
-		input {
-			margin: 10px;
-			border: 6px solid #545454;
-			width: 400px;
-			height: 50px;
-			font-size: 24px;
-		}
-		
-		.enrolltext {
-			padding-top: 20px;
-			font-size: 30px;
-			color: #545454;
-		}
-	</style>
+	<script>
+		$(document).ready(function(){
+			$('input[name=pwCheck]').change(function(){
+				if($('input[name=memberPw]').val() === $('input[name=pwCheck]').val()) {
+					$("#errDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
+					$(".enrollbtn").removeAttr("disabled");
+				} else {
+					$("#errDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
+					$(".enrollbtn").attr("disabled", "disabled");
+				}
+			});
+			
+			$('input[name=memberPw]').change(function(){
+				if($('input[name=memberPw]').val() === $('input[name=pwCheck]').val()) {
+					$("#errDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
+					$(".enrollbtn").removeAttr("disabled");
+				} else {
+					$("#errDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
+					$(".enrollbtn").attr("disabled", "disabled");
+				}
+			});
+		});
+	</script>
 </body>
 </html>

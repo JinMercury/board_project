@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/css/header.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/css/post.css">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -49,78 +51,5 @@
 			</form>
 		</div>
 	</section>
-	
-	<style>
-		.postDiv {
-			margin: 0 auto;
-			margin-top: 20px;
-			width: 80%;
-			height: 400px;
-			border: 4px solid #545454;
-		}
-		
-		.comment {
-			margin: 0 auto;
-			margin-top: 5px;
-			width: 80%;
-			height: 300px;
-			border: 4px solid #545454;
-		}
-		
-		.comWriDiv {
-			margin: 0 auto;
-			margin-top: 5px;
-			width: 80%;
-			height: 50px;
-			border: 4px solid #545454;
-		}
-		
-		.text {
-			font-size: 16px;
-			padding-right: 20px; 
-		}
-		
-		.spanDiv {
-			margin: 20px;
-		}
-		
-		.contents {
-			width: 90%;
-			margin: 20px;
-			margin-top: 30px;
-		}
-		
-		.commDiv {
-			margin-top: 10px;
-		}
-		
-		.comm {
-			padding-left: 10px;
-			padding-right: 10px;
-		}
-		
-		input {
-			border: none;
-			width: 700px;
-			height: 40px;
-			margin-top: 4px;
-			margin-left: 10px;
-			font-size: 16px;
-		}
-		
-		.commbtn {
-			all: unset;
-			background-color: #545454; 
-			font-size: 16px;
-			color: white;
-			padding: 10px;
-			width: 70px;
-			border-radius: 12px;
-			float: right;
-			margin-right: 10px;
-			margin-top: 6px;
-			text-align: center;
-		}
-	</style>
 </body>
 </html>

@@ -1,76 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <header>
 	<div class="hdDiv">
 		<p class="logo"><a href="<%= request.getContextPath() %>/">LOGO</a></p>
 		<div class="btnDiv">
-			<button class="hdbtn lgibtn">로그인</button>
-			<button class="hdbtn lgobtn">로그아웃</button>
+			<c:if test="${empty lgnss}">
+				<button class="hdbtn lgibtn">로그인</button>
+			</c:if>
+			<c:if test="${not empty lgnss}">
+				<button class="hdbtn lgobtn">로그아웃</button>
+			</c:if>
 			<button class="hdbtn enrbtn">회원정보</button>
 		</div>
 	</div>
 </header>
 
-<!-- style>
-	@font-face {
-	    font-family: 'NanumSquareNeo-Variable';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-	    font-weight: normal;
-	    font-style: normal;
-	}
+	<script>
+		$(".hdbtn.lgibtn").on("click", login);
+		$(".hdbtn.lgobtn").on("click", logout);
+		$(".hdbtn.enrbtn").on("click", enroll);
 	
-	body {
-		font-family: 'NanumSquareNeo-Variable';
-	}
+		function login() {
+			console.log("로그인버튼");
+			location.href="<%= request.getContextPath() %>/login";
+		}
 	
-	.hdbtn {
-		all: unset;
-		position: absolute;
-		font-size: 24px;
-		color: white;
-		background-color: #545454;
-	}
-	
-	.lgibtn, .lgobtn {
-		right: 25%;
-		top: 130px;
-	}
-	
-	.enrbtn {
-		right: 14%;
-		top: 130px;
-	}
-
-	.hdDiv {
-		margin: 0 auto;
-		margin-top: 50px;
-		background-color: #545454;
-		width: 80%;
-		height: 110px;
-		border: 4px solid #545454;
-	}
-
-	.logo {
-		font-size: 36px;
-		color: white;
-		text-align: center;
-	}
-	
-	.btnDiv {
-		display: inline-block;
-		float: right;
-		padding: 20px;
-		padding-top: 60px;
-	}
-	
-	a {
-		color: #fff;
-		text-decoration: none;
-		outline: none;
-		text-align: center;
-	}
-	
-	a:hover, a:active {
-		text-decoration: none;
-	}
-</style-->
+		function logout() {
+			console.log("로그아웃버튼");
+			location.href="<%= request.getContextPath() %>/logout";
+		}
+		
+		function enroll() {
+			console.log("회원가입버튼");
+			location.href="<%= request.getContextPath() %>/enroll";
+		}
+	</script>
