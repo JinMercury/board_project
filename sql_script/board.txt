@@ -3,13 +3,16 @@
 CREATE TABLE board_tbl(
  boardIdx number primary key not null,
  boardWriter varchar2(20 BYTE) not null,
+ boardDiv varchar2(20 byte) not null,
  boardSubject varchar2(255 byte) not null,
  boardContent clob,
  boardDate timestamp default(CURRENT_TIMESTAMP),
  viewCount number default(0)
 );
+create sequence seq_board nocache;
+select * from board_tbl;
 
-create sequence seq_member_tbl nocache;
+insert into board_tbl values(seq_board.nextval, '유저1', '공지', '제목1234', '내용1234', default, default);
 
 --DROP TABLE comment_tbl CASCADE CONSTRAINTS;
 
