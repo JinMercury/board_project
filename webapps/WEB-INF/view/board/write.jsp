@@ -8,12 +8,13 @@
 <meta charset="UTF-8">
 <title>게시글 작성</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <body>
 	<jsp:include page="/WEB-INF/view/header.jsp"/>
 	<section>
 		<form action="write" method="post">
 			<div class="writeDiv">
-				<select class="select">
+				<select class="select" name="boardDiv">
 					<option value="공지">공지</option>
 					<option value="잡담">잡담</option>
 				</select>

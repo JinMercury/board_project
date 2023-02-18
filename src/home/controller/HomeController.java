@@ -2,6 +2,7 @@ package home.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +31,29 @@ public class HomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<BoardVo> result = new BoardService().getList();
+		Map<String, String[]> paraMap = request.getParameterMap();
+		if(paraMap.size() == 0) {
+			List<BoardVo> result = new BoardService().getList();
+			
+			request.setAttribute("getList", result);
+			request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
+		} else {
+			String boardDiv = request.getParameter("selDiv");
+			String searchInp = request.getParameter("searchInp");
+			
+			List<BoardVo> result = new BoardService().getSearchList(boardDiv, searchInp);
+			
+			request.setAttribute("getList", result);
+			request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String boardDiv = request.getParameter("selDiv");
+		String searchInp = request.getParameter("searchInp");
+		
+		List<BoardVo> result = new BoardService().getSearchList(boardDiv, searchInp);
 		
 		request.setAttribute("getList", result);
 		request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);

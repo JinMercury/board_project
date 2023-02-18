@@ -45,6 +45,7 @@ textarea {
 	border: 4px solid #545454;
 	width: 80%;
 	height: 15em;
+	resize: none;
 	font-size: 18px;
 	font-family: 'NanumSquareNeo-Variable';
 }

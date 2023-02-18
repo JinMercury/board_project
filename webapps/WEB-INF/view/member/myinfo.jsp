@@ -18,7 +18,7 @@
 			<div id="myinfoform">
 				<form action="myinfo" method="post">
 					<p class="myinfotext">회원정보<p>
-					<input type="text" name="memberId" value="${vo.memberId}" readonly>
+					<input type="text" name="memberId" value="${vo.memberId}" disabled>
 					<br>
 					<input type="password" name="memberPw" placeholder="비밀번호">
 					<br>

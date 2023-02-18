@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.model.service.BoardService;
+import board.model.vo.BoardVo;
+import member.model.vo.MemberVo;
+
 /**
  * Servlet implementation class WriteController
  */
@@ -32,7 +36,20 @@ public class WriteController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		BoardVo vo = new BoardVo();
+		String boardDiv = request.getParameter("boardDiv");
+		String boardWriter = ((MemberVo)request.getSession().getAttribute("lgnss")).getNickname();
+		String boardSubject = request.getParameter("boardSubject");
+		String boardContent = request.getParameter("boardContent");
+		
+		vo.setBoardDiv(boardDiv);
+		vo.setBoardWriter(boardWriter);
+		vo.setBoardSubject(boardSubject);
+		vo.setBoardContent(boardContent);
+		
+		int result = new BoardService().postWrite(vo);
+		
+		response.sendRedirect(request.getContextPath() + "/");
 	}
 
 }

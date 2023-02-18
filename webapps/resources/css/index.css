@@ -14,3 +14,53 @@ table {
 	width: 80%;
 	border-spacing: 0 10px;
 }
+
+.writeDiv {
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 80%;
+}
+
+.btn {
+	all: unset;
+	background-color: #545454; 
+	font-size: 16px;
+	color: white;
+	padding: 10px;
+	margin: 5px;
+	width: 70px;
+	border-radius: 12px;
+	text-align: center;
+}
+
+.writeBtn {
+	float: right;
+}
+
+.searchDiv {
+	margin: 0 auto;
+	margin-top: 100px;
+	width: 80%;
+	text-align: center;
+}
+
+.searchDiv form {
+	margin: 0 auto;
+}
+
+.select {
+	margin-left: 30px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	font-family: 'NanumSquareNeo-Variable';
+	border: 2px solid #545454;
+}
+
+input {
+	margin: 10px;
+	border: 4px solid #545454;
+	width: 20%;
+	height: 50px;
+	font-size: 16px;
+}

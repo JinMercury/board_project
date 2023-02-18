@@ -26,14 +26,29 @@
 						<td>${data.boardIdx}</td>
 						<td>${data.boardWriter}</td>
 						<td>
-							<span>[${data.boardDiv}]</span>
-							<span>${data.boardSubject}</span>
+							<a href="./post?idx=<c:out value='${data.boardIdx}'/>" style="color: black">
+								<span>[${data.boardDiv}]</span>
+								<span>${data.boardSubject}</span>
+							</a>
 							<span>(${data.viewCount})</span>
 						</td>
 						<td>${data.boardDate}</td>
 					</tr>
 				</c:forEach>
 			</table>
+		</div>
+		<div class="writeDiv">
+			<button class="btn writeBtn" type="button">글쓰기</button>
+		</div>
+		<div class="searchDiv">
+			<form>
+				<select class="select" name="selDiv">
+					<option value="공지">공지</option>
+					<option value="잡담">잡담</option>
+				</select>
+				<input type="text" name="searchInp" placeholder="검색어">
+				<button class="btn searchBtn" type="submit">검색</button>
+			</form>
 		</div>
 	</section>
 </body>
