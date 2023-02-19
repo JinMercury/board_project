@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.model.service.BoardService;
 import board.model.vo.BoardVo;
+import page.Paging;
 
 /**
  * Servlet implementation class HomeController
@@ -32,18 +33,29 @@ public class HomeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String[]> paraMap = request.getParameterMap();
-		if(paraMap.size() == 0) {
-			List<BoardVo> result = new BoardService().getList();
+		
+		String pageNumber = request.getParameter("p");
+		int pNum;
+		if(pageNumber == null || pageNumber.isEmpty()) {
+			pNum = 1;
+		} else {
+			pNum = Integer.parseInt(pageNumber);
+		}
+		if(paraMap.size() <= 1) {
+//			List<BoardVo> result = new BoardService().getList();
+//			request.setAttribute("getList", result);
 			
-			request.setAttribute("getList", result);
+			Paging paging = new BoardService().getPage(pNum);
+			request.setAttribute("paging", paging);
 			request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
 		} else {
 			String boardDiv = request.getParameter("selDiv");
 			String searchInp = request.getParameter("searchInp");
 			
-			List<BoardVo> result = new BoardService().getSearchList(boardDiv, searchInp);
+//			List<BoardVo> result = new BoardService().getSearchList(boardDiv, searchInp);
+			Paging paging = new BoardService().getSearchListPage(pNum, boardDiv, searchInp);
 			
-			request.setAttribute("getList", result);
+			request.setAttribute("paging", paging);
 			request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
 		}
 	}

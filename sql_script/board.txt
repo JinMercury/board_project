@@ -10,10 +10,22 @@ CREATE TABLE board_tbl(
  viewCount number default(0)
 );
 create sequence seq_board nocache;
-select * from board_tbl;
+select * from board_tbl order by boarddate desc;
+select * from board_tbl where boarddiv='공지' and boardSubject like '%제목%' order by boarddate desc;
+SELECT * FROM (SELECT ROWNUM AS N, boardIdx, boardWriter, boardDiv, boardSubject, boardContent, boardDate, viewCount
+FROM (select * from board_tbl where boarddiv='공지' and boardSubject like '%페이징%' order by boarddate desc))
+WHERE N BETWEEN '1' AND '10';
 
 insert into board_tbl values(seq_board.nextval, '유저1', '공지', '제목1234', '내용1234', default, default);
+insert into board_tbl values(seq_board.nextval, '유저1', '잡담', '제목5678', '내용6789', default, default);
+insert into board_tbl values(seq_board.nextval, '유저1', '공지', '페이징테스트12', '내용1234', default, default);
 
+update board_tbl set boardWriter=?, boardDiv=?, boardSubject=?, boardContent=? where boardIdx=?;
+update board_tbl set viewCount=(select viewCount from board_tbl where boardIdx=2)+1 where boardIdx=2;
+
+delete from board_tbl where boardIdx=2;
+
+select * from board_tbl where boardIdx=2;
 --DROP TABLE comment_tbl CASCADE CONSTRAINTS;
 
 CREATE TABLE comment_tbl(
@@ -23,6 +35,12 @@ CREATE TABLE comment_tbl(
  commentContent clob,
  commentDate timestamp default(CURRENT_TIMESTAMP)
 );
+create sequence seq_comm nocache;
+select * from comment_tbl;
+delete from comment_tbl where commentIdx=6;
+
+insert into comment_tbl values(seq_comm.nextval, 2, '유저1', '댓글1234', default);
+insert into comment_tbl values(seq_comm.nextval, 2, '유저1', '댓글5678', default);
 
 --DROP TABLE member_tbl CASCADE CONSTRAINTS;
 
@@ -34,3 +52,5 @@ CREATE TABLE member_tbl(
 select * from member_tbl;
 
 insert into member_tbl values('user1', 'user1', '유저1');
+
+update member_tbl set memberPw='user1', nickname='유저11' where memberId='user1';

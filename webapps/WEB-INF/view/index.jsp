@@ -21,7 +21,7 @@
 					<td>제목</td>
 					<td>작성일</td>
 				</tr>
-				<c:forEach var="data" items="${getList}">
+				<c:forEach var="data" items="${paging.page}">
 					<tr>
 						<td>${data.boardIdx}</td>
 						<td>${data.boardWriter}</td>
@@ -39,6 +39,43 @@
 		</div>
 		<div class="writeDiv">
 			<button class="btn writeBtn" type="button">글쓰기</button>
+		</div>
+		<div class="pageDiv">
+			<c:set var="pageNumber" value="${empty param.p ? 1 : param.p}" />
+			<c:choose>
+				<c:when test="${requestScope.paging.prevPage eq -1}">
+					<a> < </a>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${empty param.selDiv && empty param.searchInp}">
+						<a href="./&?p=${requestScope.paging.prevPage}"> < </a>
+					</c:if>
+					<c:if test="${not empty param.selDiv || not empty param.searchInp}">
+						<a href="./?selDiv=${param.selDiv}&searchInp=${param.searchInp}&p=${requestScope.paging.prevPage}"> < </a>
+					</c:if>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="pNum" items="${requestScope.paging.pageList}">
+				<c:if test="${empty param.selDiv && empty param.searchInp}">
+					<a href="./?p=${pNum}">${pNum}</a>
+				</c:if>
+				<c:if test="${not empty param.selDiv || not empty param.searchInp}">
+					<a href="./?selDiv=${param.selDiv}&searchInp=${param.searchInp}&p=${pNum}">${pNum}</a>
+				</c:if>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${requestScope.paging.nextPage eq -1}">
+					<a> > </a>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${empty param.selDiv && empty param.searchInp}">
+						<a href="./&?p=${requestScope.paging.nextPage}"> > </a>
+						</c:if>
+					<c:if test="${not empty param.selDiv || not empty param.searchInp}">
+						<a href="./?selDiv=${param.selDiv}&searchInp=${param.searchInp}&p=${requestScope.paging.nextPage}"> > </a>
+					</c:if>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<div class="searchDiv">
 			<form>

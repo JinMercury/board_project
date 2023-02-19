@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import board.model.vo.BoardVo;
 import common.jdbc.JdbcTemplate;
@@ -185,6 +186,138 @@ public class BoardDao {
 				vo.setBoardWriter(rs.getString("boardWriter"));
 				vo.setViewCount(rs.getInt("viewCount"));
 				result.add(vo);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcTemplate.close(rs);
+			JdbcTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	// 페이징 처리
+	public List<BoardVo> selectPage(Connection conn, Map<String, Integer> page) {
+		List<BoardVo> result = null;
+		String query = "SELECT * FROM "
+				+ "(SELECT ROWNUM AS N, boardIdx, boardWriter, boardDiv, "
+				+ "boardSubject, boardContent, boardDate, viewCount "
+				+ "FROM (SELECT * FROM board_tbl ORDER BY boardDate DESC)) "
+				+ "WHERE N BETWEEN ? AND ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, page.get("start"));
+			pstmt.setInt(2, page.get("end"));
+			
+			rs = pstmt.executeQuery();
+			
+			result = new ArrayList<>();
+			while(rs.next()) {
+				BoardVo vo = new BoardVo();
+				vo.setBoardContent(rs.getString("boardContent"));
+				vo.setBoardDate(rs.getDate("boardDate"));
+				vo.setBoardDiv(rs.getString("boardDiv"));
+				vo.setBoardIdx(rs.getInt("boardIdx"));
+				vo.setBoardSubject(rs.getString("boardSubject"));
+				vo.setBoardWriter(rs.getString("boardWriter"));
+				vo.setViewCount(rs.getInt("viewCount"));
+				result.add(vo);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcTemplate.close(rs);
+			JdbcTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int selectTotalRowCount(Connection conn) {
+		int result = -1;
+		String query = "select count(*) from board_tbl";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcTemplate.close(rs);
+			JdbcTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public List<BoardVo> getSearchListPage(Connection conn, Map<String, Integer> page, String boardDiv,
+			String searchInp) {
+		List<BoardVo> result = null;
+		String query = "SELECT * FROM "
+				+ "(SELECT ROWNUM AS N, boardIdx, boardWriter, boardDiv, "
+				+ "boardSubject, boardContent, boardDate, viewCount "
+				+ "FROM (select * from board_tbl where boarddiv=? and boardSubject like ? order by boarddate desc)) "
+				+ "WHERE N BETWEEN ? AND ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, boardDiv);
+			pstmt.setString(2, "%"+searchInp+"%");
+			pstmt.setInt(3, page.get("start"));
+			pstmt.setInt(4, page.get("end"));
+			
+			rs = pstmt.executeQuery();
+			
+			result = new ArrayList<>();
+			while(rs.next()) {
+				BoardVo vo = new BoardVo();
+				vo.setBoardContent(rs.getString("boardContent"));
+				vo.setBoardDate(rs.getDate("boardDate"));
+				vo.setBoardDiv(rs.getString("boardDiv"));
+				vo.setBoardIdx(rs.getInt("boardIdx"));
+				vo.setBoardSubject(rs.getString("boardSubject"));
+				vo.setBoardWriter(rs.getString("boardWriter"));
+				vo.setViewCount(rs.getInt("viewCount"));
+				result.add(vo);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcTemplate.close(rs);
+			JdbcTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int selectSearchRowCount(Connection conn, String boardDiv, String searchInp) {
+		int result = -1;
+		String query = "select count(*) from board_tbl where boarddiv=? and boardSubject like ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, boardDiv);
+			pstmt.setString(2, "%"+searchInp+"%");
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
