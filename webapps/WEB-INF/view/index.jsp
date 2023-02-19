@@ -88,5 +88,13 @@
 			</form>
 		</div>
 	</section>
+	
+	<script>
+		$(".writeBtn").on("click", hrefWriteBtn);
+	
+		function hrefWriteBtn() {
+			location.href = "<%= request.getContextPath() %>/write";
+		}
+	</script>
 </body>
 </html>
