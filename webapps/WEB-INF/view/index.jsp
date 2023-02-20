@@ -8,8 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 메인</title>
-</head>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+</head>
 <body>
 	<jsp:include page="/WEB-INF/view/header.jsp"/>
 	<section>
