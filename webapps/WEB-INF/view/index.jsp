@@ -40,39 +40,45 @@
 		<div class="writeDiv">
 			<button class="btn writeBtn" type="button">글쓰기</button>
 		</div>
+		
 		<div class="pageDiv">
 			<c:set var="pageNumber" value="${empty param.p ? 1 : param.p}" />
 			<c:choose>
 				<c:when test="${requestScope.paging.prevPage eq -1}">
-					<a> < </a>
+					<a> &lt; </a>
+					<span>&#124;</span>
 				</c:when>
 				<c:otherwise>
 					<c:if test="${empty param.selDiv && empty param.searchInp}">
-						<a href="./&?p=${requestScope.paging.prevPage}"> < </a>
+						<a href="./&?p=${requestScope.paging.prevPage}"> &lt; </a>
+						<span>&#124;</span>
 					</c:if>
 					<c:if test="${not empty param.selDiv || not empty param.searchInp}">
-						<a href="./?selDiv=${param.selDiv}&searchInp=${param.searchInp}&p=${requestScope.paging.prevPage}"> < </a>
+						<a href="./?selDiv=${param.selDiv}&searchInp=${param.searchInp}&p=${requestScope.paging.prevPage}"> &lt; </a>
+						<span>&#124;</span>
 					</c:if>
 				</c:otherwise>
 			</c:choose>
 			<c:forEach var="pNum" items="${requestScope.paging.pageList}">
 				<c:if test="${empty param.selDiv && empty param.searchInp}">
 					<a href="./?p=${pNum}">${pNum}</a>
+					<span>&#124;</span>
 				</c:if>
 				<c:if test="${not empty param.selDiv || not empty param.searchInp}">
 					<a href="./?selDiv=${param.selDiv}&searchInp=${param.searchInp}&p=${pNum}">${pNum}</a>
+					<span>&#124;</span>
 				</c:if>
 			</c:forEach>
 			<c:choose>
 				<c:when test="${requestScope.paging.nextPage eq -1}">
-					<a> > </a>
+					<a> &gt; </a>
 				</c:when>
 				<c:otherwise>
 					<c:if test="${empty param.selDiv && empty param.searchInp}">
-						<a href="./&?p=${requestScope.paging.nextPage}"> > </a>
+						<a href="./&?p=${requestScope.paging.nextPage}"> &gt; </a>
 						</c:if>
 					<c:if test="${not empty param.selDiv || not empty param.searchInp}">
-						<a href="./?selDiv=${param.selDiv}&searchInp=${param.searchInp}&p=${requestScope.paging.nextPage}"> > </a>
+						<a href="./?selDiv=${param.selDiv}&searchInp=${param.searchInp}&p=${requestScope.paging.nextPage}"> &gt; </a>
 					</c:if>
 				</c:otherwise>
 			</c:choose>
