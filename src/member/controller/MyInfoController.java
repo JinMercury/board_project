@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.model.service.BoardService;
 import member.model.service.MemberService;
 import member.model.vo.MemberVo;
 
@@ -36,11 +37,15 @@ public class MyInfoController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberVo vo = new MemberVo();
-		vo.setMemberId(request.getParameter("memberId"));
+		vo.setMemberId(((MemberVo)request.getSession().getAttribute("lgnss")).getMemberId());
+		String currNickname = (((MemberVo)request.getSession().getAttribute("lgnss")).getNickname());
 		vo.setMemberPw(request.getParameter("memberPw"));
 		vo.setNickname(request.getParameter("nickname"));
 		
 		int result = new MemberService().infoChange(vo);
+		if(result == 1) {
+			new BoardService().boardWriterChange(currNickname, vo.getNickname());
+		}
 		
 		if(result < 1) {
 			request.setAttribute("infoErr", "정보수정이 실패하였습니다. 다시 시도해주세요");

@@ -108,4 +108,10 @@ public class BoardService {
 		return paging;
 	}
 
+	public void boardWriterChange(String currNickname, String nickname) {
+		Connection conn = JdbcTemplate.getConnection();
+		new BoardDao().boardWriterChange(conn, currNickname, nickname);
+		JdbcTemplate.close(conn);
+	}
+
 }

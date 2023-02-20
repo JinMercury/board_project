@@ -329,4 +329,24 @@ public class BoardDao {
 		return result;
 	}
 
+	public void boardWriterChange(Connection conn, String currNickname, String nickname) {
+		String query = "update board_tbl set boardWriter=? where boardWriter=?";
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, nickname);
+			pstmt.setString(2, currNickname);
+			
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcTemplate.close(pstmt);
+		}
+	}
+
 }

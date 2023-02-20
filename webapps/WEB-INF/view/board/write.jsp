@@ -27,7 +27,9 @@
 					<textarea name="boardContent" placeholder="내용을 입력해 주세요."></textarea>
 				</div>
 			</div>
-			<button class="writebtn" type="submit">작성</button>
+			<div class="btnDiv">
+				<button class="writebtn" type="submit">작성</button>
+			</div>
 		</form>
 	</section>
 </body>
