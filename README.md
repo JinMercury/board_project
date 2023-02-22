@@ -6,16 +6,10 @@
   <br>
 </p>
 
-목차
-
 ## 프로젝트 소개
 
 <p align="justify">
 개인 실습 프로젝트로 게시판을 만들어보았다.
-</p>
-
-<p align="center">
-![메인]
 </p>
 
 <br>
@@ -44,7 +38,7 @@
 ### 게시판
 
 #### 메인화면
-![메인화면]
+![메인]
 
 #### 게시글
 ![게시글]
@@ -70,18 +64,18 @@ DB에서 많이 혼란을 느꼈다.
 
 <!-- Stack Icon Refernces -->
 
-[js]: /resources/image/stack/javascript.svg
-[css]: /resources/image/stack/css.svg
-[html]: /resources/image/stack/html.svg
-[java]: /resources/image/stack/java.png
-[oracle]: /resources/image/stack/oracle.png
+[js]: image/stack/javascript.svg
+[css]: image/stack/css.svg
+[html]: image/stack/html.svg
+[java]: image/stack/java.png
+[oracle]: image/stack/oracle.png
 
 <!-- Sample Refernces -->
 
-[게시글]: /resources/image/sample/게시글.png
-[게시글수정]: /resources/image/sample/게시글수정.png
-[게시글작성]: /resources/image/sample/게시글작성.png
-[로그인]: /resources/image/sample/로그인.png
-[메인]: /resources/image/sample/메인.png
-[회원가입]: /resources/image/sample/회원가입.png
-[회원정보]: /resources/image/sample/회원정보.png
+[게시글]: /image/sample/게시글.png
+[게시글수정]: image/sample/게시글수정.png
+[게시글작성]: image/sample/게시글작성.png
+[로그인]: image/sample/로그인.png
+[메인]: image/sample/메인.png
+[회원가입]: image/sample/회원가입.png
+[회원정보]: image/sample/회원정보.png
