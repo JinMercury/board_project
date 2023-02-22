@@ -75,3 +75,8 @@ input {
 .pageDiv a {
 	color: black;
 }
+
+.line > td {
+	padding-bottom: 4px;
+	border-bottom: 2px solid #545454;
+}

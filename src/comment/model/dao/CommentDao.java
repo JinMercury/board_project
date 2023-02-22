@@ -105,4 +105,25 @@ public class CommentDao {
 		return result;
 	}
 
+	public void commentWriterChange(Connection conn, String currNickname, String nickname) {
+		String query = "update comment_tbl set commentWriter=? where commentWriter=?";
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, nickname);
+			pstmt.setString(2, currNickname);
+			
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcTemplate.close(pstmt);
+		}
+		
+	}
+
 }

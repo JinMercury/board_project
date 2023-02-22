@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.model.service.BoardService;
+import comment.model.service.CommentService;
 import member.model.service.MemberService;
 import member.model.vo.MemberVo;
 
@@ -45,6 +46,7 @@ public class MyInfoController extends HttpServlet {
 		int result = new MemberService().infoChange(vo);
 		if(result == 1) {
 			new BoardService().boardWriterChange(currNickname, vo.getNickname());
+			new CommentService().commentWriterChange(currNickname, vo.getNickname());
 		}
 		
 		if(result < 1) {

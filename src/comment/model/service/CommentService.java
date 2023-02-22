@@ -3,6 +3,7 @@ package comment.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import board.model.dao.BoardDao;
 import comment.model.dao.CommentDao;
 import comment.model.vo.CommentVo;
 import common.jdbc.JdbcTemplate;
@@ -43,6 +44,12 @@ public class CommentService {
 		JdbcTemplate.close(conn);
 		
 		return result;
+	}
+
+	public void commentWriterChange(String currNickname, String nickname) {
+		Connection conn = JdbcTemplate.getConnection();
+		new CommentDao().commentWriterChange(conn, currNickname, nickname);
+		JdbcTemplate.close(conn);
 	}
 
 }

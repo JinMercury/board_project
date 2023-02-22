@@ -15,12 +15,14 @@
 	<section>
 		<div class="tabDiv">
 			<table>
-				<tr>
-					<td>글번호</td>
-					<td>작성자</td>
-					<td>제목</td>
-					<td>작성일</td>
-				</tr>
+				<thead>
+					<tr class="line">
+						<td>글번호</td>
+						<td>작성자</td>
+						<td>제목</td>
+						<td>작성일</td>
+					</tr>
+				</thead>
 				<c:forEach var="data" items="${paging.page}">
 					<tr>
 						<td>${data.boardIdx}</td>
